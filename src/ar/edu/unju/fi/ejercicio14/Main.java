@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
-		int num;
+		int num,i;
 		
 		do {
 			System.out.print("Ingrese un entero en el rango [3-10]: ");
@@ -19,14 +19,14 @@ public class Main {
 		
 		int [] array = new int [num];
 		
-		for(int i =0; i<array.length; i++) {
-			System.out.print("Ingrese un entero para posicion ["+i+"/"+(num-1)+"]:");
+		for(i = 0; i<array.length; i++) {
+			System.out.print("Ingrese un entero para posicion ["+i+"/"+(num-1)+"]: ");
 			array[i] = sc.nextInt();
 		}
 		
 		System.out.println("---------------------");
 		System.out.println("**ARRAY DE ENTEROS**");
-		for(int i =0; i<array.length; i++) {
+		for(i = 0; i<array.length; i++) {
 			System.out.println("Entero en posicion ["+i+"] = "+array[i]);
 		}
 		

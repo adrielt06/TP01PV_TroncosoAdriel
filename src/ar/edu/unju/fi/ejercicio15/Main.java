@@ -14,7 +14,7 @@ public class Main {
 			num = sc.nextInt();
 			sc.nextLine();
 			if(num < 5 || num > 10) {
-				System.out.println("ERROR: El entero esta duera del rango.");
+				System.out.println("ERROR: El entero esta fuera del rango.");
 			}
 		}while(num < 5 || num > 10);
 		

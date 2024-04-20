@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unju.fi.ejercicio17.model.Jugador;
-import ar.edu.unju.fi.ejercicio17.model.Menu;
+import ar.edu.unju.fi.ejercicio17.util.Menu;
 
 public class Main {
 

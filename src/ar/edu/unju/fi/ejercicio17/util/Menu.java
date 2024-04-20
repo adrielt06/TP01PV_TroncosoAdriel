@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.ejercicio17.model;
+package ar.edu.unju.fi.ejercicio17.util;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,8 +9,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import ar.edu.unju.fi.ejercicio17.model.Jugador;
+
 public class Menu {
-private int opcion;
+	private int opcion;
 	
 	public void generarMenu(List<Jugador> jugadores) {
 		Scanner sc = new Scanner(System.in);
@@ -49,12 +51,16 @@ private int opcion;
 	}
 	
 	private void mostrarPorNacionalidad(List<Jugador> jugadores, Scanner sc) {
-		System.out.print("Ingrese la nacionalidad de los jugadores que desea mostrar: ");
-		String nac = sc.nextLine();
-		for(Jugador a:jugadores) {
-			if (a.getNacionalidad().equalsIgnoreCase(nac)) {
-				System.out.println(a.toString());
-			}
+		if (!jugadores.isEmpty()) {
+			System.out.print("Ingrese la nacionalidad de los jugadores que desea mostrar: ");
+			String nac = sc.nextLine();
+			for (Jugador a : jugadores) {
+				if (a.getNacionalidad().equalsIgnoreCase(nac)) {
+					System.out.println(a.toString());
+				}
+			} 
+		}else {
+			System.out.println("ERROR: La lista de jugadores esta vacia.");
 		}
 	}
 	
@@ -147,13 +153,16 @@ private int opcion;
 	}
 	
 	private void mostrarJugadores(List<Jugador> jugadores) {
-		jugadores.sort(Comparator.comparing(Jugador::getApellido));
-		System.out.println("**LISTA DE JUGADORES ORDENADA POR APELLIDO**");
-		for(Jugador a:jugadores) {
-			System.out.println(a.toString());
+		if (!jugadores.isEmpty()) {
+			jugadores.sort(Comparator.comparing(Jugador::getApellido));
+			System.out.println("**LISTA DE JUGADORES ORDENADA POR APELLIDO**");
+			for (Jugador a : jugadores) {
+				System.out.println(a.toString());
+			}
+		}else{
+				System.out.println("ERROR: La lista de jugadores esta vacia.");
+			}
 		}
-	}
-	
 	
 	private void mostrarJugador(List<Jugador> jugadores, Scanner sc) {
 		boolean encontrado = false;
@@ -214,44 +223,54 @@ private int opcion;
 		return jugadores;
 	}
 	
+	
 	private float validarPeso(Scanner sc) {
-		float peso;
-		System.out.print("Ingrese el peso del jugador: ");
-		try {
-			peso = sc.nextFloat();
-			sc.nextLine();
-		}catch(InputMismatchException e) {
-			System.out.println("ERROR: Debe ingresar un numero, intente nuevamente.");
-			sc.nextLine();
-			return validarPeso(sc);
+		float peso = 0.0f;
+		boolean valido = false;
+		while (!valido) {
+			System.out.print("Ingrese el peso del jugador: ");
+			try {
+				peso = sc.nextFloat();
+				sc.nextLine();
+				valido = true;
+			} catch (InputMismatchException e) {
+				System.out.println("ERROR: Debe ingresar un numero, intente nuevamente.");
+				sc.nextLine();
+			} 
 		}
 		return peso;
 	}
 	
 	private float validarEstatura(Scanner sc) {
-		float est;
-		System.out.print("Ingrese la estatura del jugador: ");
-		try {
-			est = sc.nextFloat();
-			sc.nextLine();
-		}catch(InputMismatchException e) {
-			System.out.println("ERROR: Debe ingresar un numero, intente nuevamente.");
-			sc.nextLine();
-			return validarEstatura(sc);
+		float est = 0.0f;
+		boolean valido = false;
+		while (!valido) {
+			System.out.print("Ingrese la estatura del jugador: ");
+			try {
+				est = sc.nextFloat();
+				sc.nextLine();
+				valido = true;
+			} catch (InputMismatchException e) {
+				System.out.println("ERROR: Debe ingresar un numero, intente nuevamente.");
+				sc.nextLine();
+			}
 		}
 		return est;
 	}
 	
 	private LocalDate validarFecha(Scanner sc) {
-		LocalDate fechaNac;
-		System.out.print("Ingrese fecha de nacimiento de jugador(dd/mm/yyyy): ");
-		try {
-			String fechaNacString = sc.nextLine();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/M/yyyy");
-			fechaNac = LocalDate.parse(fechaNacString, formatter);
-		} catch (DateTimeParseException e) {
-			System.out.println("ERROR: Formato de fecha incorrecto, intente nuevamente.");
-			return validarFecha(sc);
+		LocalDate fechaNac = LocalDate.now();
+		boolean valido = false;
+		while (!valido) {
+			System.out.print("Ingrese fecha de nacimiento de jugador(dd/mm/yyyy): ");
+			try {
+				String fechaNacString = sc.nextLine();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/M/yyyy");
+				fechaNac = LocalDate.parse(fechaNacString, formatter);
+				valido = true;
+			} catch (DateTimeParseException e) {
+				System.out.println("ERROR: Formato de fecha incorrecto, intente nuevamente.");
+			} 
 		}
 		return fechaNac;
 	}
@@ -296,6 +315,4 @@ private int opcion;
 	public void setOpcion(int opcion) {
 		this.opcion = opcion;
 	}
-	
-	
 }

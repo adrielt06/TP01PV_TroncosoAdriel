@@ -266,7 +266,7 @@ public class Menu {
 		System.out.println("5 – Eliminar un destino turistico.");
 		System.out.println("6 – Mostrar los destinos turisticos ordenados por nombre.");
 		System.out.println("7 – Mostrar todos los paises.");
-		System.out.println("8 – Mostrar los destinos turisticos que perteneces a un pais.");
+		System.out.println("8 – Mostrar los destinos turisticos que pertenecen a un pais.");
 		System.out.println("9 – Salir.");
 		System.out.println("---------------------------");
 	}
